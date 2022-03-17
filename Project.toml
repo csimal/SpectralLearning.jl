@@ -1,0 +1,13 @@
+name = "SpectralLearning"
+uuid = "28497bba-f241-4af6-8f34-55b57bfde5af"
+authors = ["Cédric Simal", "University of Namur"]
+version = "0.1.0"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
