@@ -1,5 +1,23 @@
 module SpectralLearning
 
-# Write your package code here.
+using Quadrature
+using HCubature
+using ApproxFun
+using Flux
+using ChainRulesCore
+using Zygote
+using ForwardDiff
+
+include("spectral_layer.jl")
+
+export Spectral, spectralize
+
+include("utils/integrals.jl")
+
+include("parametric_functions/ParametricFunctions.jl")
+using .ParametricFunctions
+
+include("kernel_operators/inner_product.jl")
+include("kernel_operators/kernel_operators.jl")
 
 end
