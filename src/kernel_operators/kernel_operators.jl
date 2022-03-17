@@ -1,12 +1,22 @@
 
+"""
+    AbstractOperator
+
+An abstract type for linear operators on Banach spaces.
+"""
 abstract type AbstractOperator end
 
+"""
+    KernelOperator{K,S} <: AbstractOperator
+
+A type for representing kernel integral operators over Hilbert spaces.
+"""
 struct KernelOperator{K,S} <: AbstractOperator
     kernel::K
     solver::S
 end
 
-KernelOperator(k) = KernelOperator(k,QuadGKJL())
+KernelOperator(k) = KernelOperator(k,HCubatureJL())
 
 function eval_(ko::KernelOperator, f; solver=ko.solver)
     k = ko.kernel
@@ -23,7 +33,7 @@ function (ko::KernelOperator)(f)
     eval_(ko, f)
 end
 
-#Base.*(ko::KernelOperator, f::Function) = ko(f)
+Base.:*(ko::KernelOperator, f::Function) = ko(f)
 
 """
     FourierKernel{T<:Real}
