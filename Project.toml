@@ -13,11 +13,12 @@ Quadrature = "67601950-bd08-11e9-3c89-fd23fb4432d2"
 Zygote = "e88e6eb3-aa80-5325-afca-941959d7151f"
 
 [compat]
-Flux = "0.10, 0.11, 0.12"
-Quadrature = "1"
-HCubature = "1"
+ApproxFun = "0.13"
 ChainRulesCore = "1"
+Flux = "0.10, 0.11, 0.12"
 ForwardDiff = "0.10"
+HCubature = "1"
+Quadrature = "1"
 Zygote = "0.6"
 julia = "1"
 
