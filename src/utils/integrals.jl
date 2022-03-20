@@ -14,6 +14,11 @@ function kernel_integral(k, f, t, solver=HCubatureJL())
     return product_integral(fun, f, solver)
 end
 
+function kernel_transpose_integral(k, f, t, solver=HCubatureJL())
+    fun(u,_) = k(u,t)
+    return product_integral(fun, f, solver)
+end
+
 function kernel_double_integral(k, f, g, solver=HCubatureJL())
     function fun(u,_)
         f(u[1]) .* k(u[1], u[2]) .* g(u[2])
