@@ -29,11 +29,21 @@ function eval_(ko::KernelOperator, f; solver=ko.solver)
     end
 end
 
-function (ko::KernelOperator)(f)
-    eval_(ko, f)
+function (ko::KernelOperator)(x)
+    eval_(ko, x)
 end
 
-Base.:*(ko::KernelOperator, f::Function) = ko(f)
+Base.:*(ko::KernelOperator, x) = ko(x)
+
+function ChainRulesCore.rrule(ko::KernelOperator, x)
+    y = ko(x)
+    function ko_pullback(δy)
+        δko = NoTangent()
+        δx = t -> kernel_transpose_integral(ko.kernel, δy, t, ko.solver)
+        return δko, δx
+    end
+    return y, ko_pullback
+end
 
 """
     FourierKernel{T<:Real}
