@@ -9,14 +9,10 @@ struct BasisFun{T<:AbstractVector{<:Real},F} <: ParametricFun
     basis::F
 end
 
-_showstr(x::BasisFun{T,F}) where {T,F} = "$(length(x.a))-element BasisFun{\n$T,\n$F}\n$(x.a)"
-
-#Base.show(io::IO, x::BasisFun{T,F}) where {T,F} = _showstr(x)
 function Base.show(io::IO, ::MIME"text/plain", x::BasisFun{T,F}) where {T,F}
     println(io, "$(length(x.a))-element BasisFun with basis $F and coefficients")
     println(io, x.a)
 end
-#Base.show(io::IO, ::MIME, x::BasisFun) = _showstr(x)
 
 """
     eval_fun(x, a, basis)
@@ -51,7 +47,7 @@ function (f::BasisFun)(x)
     eval_fun(x, f.a, f.basis)
 end
 
-function grad(f::BasisFun, x)
+function to_grad(f::BasisFun, x)
     [f.basis(k,x) for k in 1:length(f.a)]
 end
 
