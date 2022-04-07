@@ -3,10 +3,6 @@ module ParametricFunctions
 using ForwardDiff
 using ChainRulesCore
 
-include("basis_fun.jl")
-include("chebyshev_basis.jl")
-include("fourier_basis.jl")
-
 export ParametricFun, BasisFun
 export Chebyshev, Fourier
 
@@ -20,6 +16,10 @@ export to_grad, from_grad, params
 An abstract type representing a parametric function.
 """
 abstract type ParametricFun end
+
+include("basis_fun.jl")
+include("chebyshev_basis.jl")
+include("fourier_basis.jl")
 
 """
     Parametric
