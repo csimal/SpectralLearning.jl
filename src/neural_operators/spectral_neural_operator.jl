@@ -6,7 +6,7 @@ A type representing a Neural Operator whose forward pass is of the form
 
     y(t) = σ((B*x)(t) - λ(t)*(B*x)(t) + b(t))
 
-where `x`, `λ` and `b` are functions, and `B` is an integral kernel operator. 
+where `x`, `λ` and `b` are functions, and `B` is a linear operator. 
 
 By default, `y` is projected in the Chebyshev polynomial basis before outputing. This is done to avoid computing multiple nested integrals when stacking multiple layers.
 
@@ -26,6 +26,10 @@ struct SpectralNeuralOperator{F,L,F1,F2,P}
 end
 
 SpectralNeuralOperator(B, λ, b) = SpectralNeuralOperator(B, λ, b, identity, f -> Fun(f, 0..1))
+
+function Base.show(io::IO, ::MIME"text/plain", x::SpectralNeuralOperator{F,L,F1,F2,P}) where {F,L,F1,F2,P}
+    println(io, "SpectralNeuralOperator with\n kernel type $L\n scaling type $F1\n bias type $F2\n activation function $F\n projection operator $P")
+end
 
 Flux.@functor SpectralNeuralOperator
 

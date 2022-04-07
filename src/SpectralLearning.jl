@@ -26,7 +26,7 @@ include("kernel_operators/kernel_operators.jl")
 export AbstractOperator, KernelOperator
 export FourierKernel
 
-include("spectral_neural_operators/spectral_neural_operator.jl")
+include("neural_operators/spectral_neural_operator.jl")
 
 export SpectralNeuralOperator
 
