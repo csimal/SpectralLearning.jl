@@ -42,9 +42,7 @@ end
 function (sno::SpectralNeuralOperator)(x)
     B, λ, b, σ = sno.B, sno.λ, sno.b, sno.σ
     y = B(x)
-    z = t -> let yt = y(t)
-        σ(yt - λ(t)*yt + b(t))
-    end
+    z = t -> σ((1- λ(t))*y(t) + b(t))
     sno.project(z)
 end
 

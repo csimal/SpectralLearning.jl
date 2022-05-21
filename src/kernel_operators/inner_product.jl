@@ -2,7 +2,7 @@
 """
     InnerProduct{F,S}
 
-An struct representing a linear form on a Hilbert space as an inner product ``⟨w, x⟩``.
+A struct representing a linear form on a Hilbert space as an inner product ``⟨w, x⟩``.
 """
 struct InnerProduct{F,S}
     w::F

@@ -18,16 +18,16 @@ include("parametric_functions/ParametricFunctions.jl")
 using .ParametricFunctions
 
 include("kernel_operators/inner_product.jl")
-
-export InnerProduct
-
 include("kernel_operators/kernel_operators.jl")
 
+export InnerProduct
 export AbstractOperator, KernelOperator
 export FourierKernel
 
 include("neural_operators/spectral_neural_operator.jl")
+include("neural_operators/finite_dim_operator.jl")
 
 export SpectralNeuralOperator
+export FiniteDimOperator
 
 end
